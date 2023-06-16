@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+</head>
+<body>
+<h1 th:text="#{label.form.title}">Form</h1>
+<form action="/" th:object="${user}" method="post" enctype="utf8">
+    <div>
+        <label th:text="#{label.user.firstName}">First</label>
+        <input th:field="*{firstName}"/>
+        <p th:each="error: ${#fields.errors('firstName')}" th:text="${error}">Validation</p>
+    </div>
+    <div>
+        <label th:text="#{label.user.lastName}">last</label>
+        <input th:field="*{lastName}"/>
+        <p th:each="error: ${#fields.errors('lastName')}" th:text="${error}">Validation</p>
+    </div>
+    <div>
+        <label th:text="#{label.user.email}">email</label>
+        <input type="email" th:field="*{email}"/>
+        <p th:each="error: ${#fields.errors('email')}" th:text="${error}">Validation</p>
+    </div>
+    <div>
+        <label th:text="#{label.user.password}">password</label>
+        <input type="password" th:field="*{password}"/>
+        <p th:each="error: ${#fields.errors('password')}" th:text="${error}">Validation</p>
+    </div>
+    <div>
+        <label th:text="#{label.user.confirmPassword}">Confirm</label>
+        <input type="password" th:field="*{matchingPassword}"/>
+    </div>
+    <button type="submit" th:text="#{label.form.submit}">Submit</button>
+
+    <a th:href="@{/login.html}" th:text="#{label.form.loginLink}">Login</a>
+</form>
+</body>
+</html>
